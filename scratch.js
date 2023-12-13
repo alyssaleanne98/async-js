@@ -73,5 +73,44 @@
             
             // NOTE: that what "succeeded" or "failed" means here is up to the API in question. For example, fetch() rejects the returned promise if (among other reasons) a network error prevented the request being sent, but fulfills the promise if the server sent a response, even if the response was an error like "404 not found" 
 
+// Combining multiple promises 
+        // A promise chain - what you need your operation consists of several asynchronous functions. 
+        // The promise.all( method is what you need to take an array of promises and returns a single promise. 
 
+        // A promise returned by Promise.all() is fulfilled when and if all the promises in the array are fulfilled. In this case, the then() handler is called with an array of all the responses, in the same order that thte promises were passed into all()
       
+        const fetchPromise1 = fetch(
+          "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json",
+        );
+        const fetchPromise2 = fetch(
+          "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/not-found",
+        );
+        const fetchPromise3 = fetch(
+          "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json",
+        );
+        
+        Promise.all([fetchPromise1, fetchPromise2, fetchPromise3])
+          .then((responses) => {
+            for (const response of responses) {
+              console.log(`${response.url}: ${response.status}`);
+            }
+          })
+          .catch((error) => {
+            console.error(`Failed to fetch: ${error}`);
+          });
+
+          // here we are making 3 fetch() requests to three different URLs. if they succeed, we will log the response status of each one. If any of them fail, then we are logging the failure. 
+          // with the URLs we've provided, all the requests should be fulfilled, although for the second, the server will return 404(not found) instead of 200(ok) because the requested file does not exist. 
+
+//Async and await 
+
+async function myFunction() {
+  //This is an async function 
+}
+  // the async keyword gives you a simpler way to work with asynchronous promise-based code. 
+  // Inside an async function, you can use the await keyword before a call to a function that returns a promise. 
+
+
+// Conclusions 
+  // Promises are the foundation of asynchronous programming in modern JS 
+  // They make it easier to express and reaason about sequences of asynchronous operations without deeply nested callbacks, and they support a style of error handling that is similar to synchronous try...catch statement. 
