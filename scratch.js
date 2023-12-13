@@ -67,5 +67,11 @@
 
 
         // Promise terminology 
-            // pending: the promise has been created, and the asynchronous function its associated with has not succeeded or failed yet. This is the state your promise is in when its returned from a call to fetch(), and the request is still being made.
-            // fulfilled: the asynchronous function has succeeded. When a promise is fulfilled, its then() handler is called. 
+            // PENDING: the promise has been created, and the asynchronous function its associated with has not succeeded or failed yet. This is the state your promise is in when its returned from a call to fetch(), and the request is still being made.
+            // FULFILLED: the asynchronous function has succeeded. When a promise is fulfilled, its then() handler is called.
+            //rejected: the asynchronous function has failed. When a promise is rejected, its catch() handler is called. 
+            
+            // NOTE: that what "succeeded" or "failed" means here is up to the API in question. For example, fetch() rejects the returned promise if (among other reasons) a network error prevented the request being sent, but fulfills the promise if the server sent a response, even if the response was an error like "404 not found" 
+
+
+      
