@@ -12,7 +12,7 @@
     // 3. Handle JSON data: 
         // if you are expecting JSON data, you need to convert the response to JSON. 
             // In what cases would you expect to use JSON data? For AJAX requests, data storage, API Endpoints.
-            
+
     // 4. Putting it Together: 
         // this is a simple example that fetches data from an API, converts the response to JSON, and logs it to the console. 
     fetch('https://api.example.com/data')
@@ -23,3 +23,21 @@
   .catch(error => {
     console.error('Error:', error);
   });
+
+  // Here is another example:
+
+  const fetchPromise = fetch(
+    "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json",
+  );
+  
+  console.log(fetchPromise);
+  
+  fetchPromise.then((response) => {
+    console.log(`Received response: ${response.status}`);
+  });
+  
+  console.log("Started request…");
+
+  // 1. we are calling the fetch()API and assigning the return value to the fetchPromise varaiable.
+  // 2. immediately after, logging the fetchPromise variable. Why is this? This should output something like Promise { <state>: "pending"}, telling us that we have a promise object, and it has a state whose value is "pending." The "pending" state means that the fetch operation is stil going 
+   
