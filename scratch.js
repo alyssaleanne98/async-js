@@ -40,4 +40,32 @@
 
   // 1. we are calling the fetch()API and assigning the return value to the fetchPromise varaiable.
   // 2. immediately after, logging the fetchPromise variable. Why is this? This should output something like Promise { <state>: "pending"}, telling us that we have a promise object, and it has a state whose value is "pending." The "pending" state means that the fetch operation is stil going 
-   
+
+  //Catching Errors
+    // how do we handle errors? the fetch()API can throw an error for many reasons and we are throwing an error ourselves if the server returned an error. 
+    // to handle error handling, Promise objects provide a catch() method. this method is called when the asynchronous operation fails.
+
+    // if you add catch() to the end of a promise chain, then it will be called when any of the asynchronous function calls fail. so you can implement an operation as several consecutive asynchronous function calls, and have a single place to handle errors. 
+
+    const fetchPromise = fetch(
+        "bad-scheme://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json",
+      );
+      
+      fetchPromise
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data[0].name);
+        })
+        .catch((error) => {
+          console.error(`Could not get products: ${error}`);
+        });
+
+
+        // Promise terminology 
+            // pending: the promise has been created, and the asynchronous function its associated with has not succeeded or failed yet. This is the state your promise is in when its returned from a call to fetch(), and the request is still being made.
+            // fulfilled: the asynchronous function has succeeded. When a promise is fulfilled, its then() handler is called. 
