@@ -71,3 +71,4 @@ document.querySelector("#reload").addEventListener("click", () => {
     document.location.reload();
 });
 
+// workers can be effective way to keep the main application responsive, although they can't access all the APIs that the main application can, and in particular can't access the DOM.

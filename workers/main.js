@@ -26,3 +26,7 @@ document.querySelector("#reload").addEventListener("click", () => {
   document.location.reload();
 });
 
+// we are creating the worker using the Worker() constructor. we pass it a URL pointing to the worker script. As soon as the worker is created, the worker script is executed.
+
+// as in the synchronous version, we add a click event handler to the "generate primes" button. but now, rather than calling a generatePrimes() function, we send a message to the worker using worker.postMessage(). This message can take an argument, and in this case, we are passing JSON object containing two properites.
+    // command: a string identifying the thing we want the worker to do (in case our worker can do more than one thing)
